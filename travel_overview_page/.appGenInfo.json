@@ -1,0 +1,29 @@
+{
+  "generationParameters": {
+    "generationDate": "Tue Nov 04 2025 14:47:37 GMT+0000 (Coordinated Universal Time)",
+    "generatorPlatform": "SAP Business Application Studio",
+    "serviceType": "SAP System (ABAP Cloud)",
+    "metadataFilename": "",
+    "serviceUrl": "https://e9391a43-4140-4b13-bac2-b1734a404edf.abap.eu10.hana.ondemand.com/sap/opu/odata/sap/ZUI_RAP_ATRAVEL_2_ANALY_O4",
+    "appName": "traveloverview1",
+    "appTitle": "Travel Overview",
+    "appDescription": "An SAP Fiori application.",
+    "appNamespace": "sap.fe.demo",
+    "ui5Theme": "sap_horizon",
+    "ui5Version": "1.136.8",
+    "enableCodeAssist": true,
+    "enableEslint": true,
+    "enableTypeScript": true,
+    "showMockDataInfo": true,
+    "generatorVersion": "1.19.3",
+    "template": "Overview Page V2",
+    "generatorName": "SAP Fiori Application Generator",
+    "entityRelatedConfig": [
+      {
+        "type": "Filter Entity Type",
+        "value": "Booking"
+      }
+    ],
+    "launchText": "To launch the generated application, run the following from the generated application root folder:\n\n```\n    npm start\n```"
+  }
+}
