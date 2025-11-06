@@ -1,0 +1,11 @@
+@EndUserText.label: 'Service Definition for Booking Analytics'
+define service ZUI_RAP_ABOOK2_ANALYTICS {
+  expose ZC_RAP_ABOOK2_ANALYTICS   as Booking;
+  expose ZR_RAP_ATRAVEL2_ANALYTICS as Travel;
+  expose ZR_RAP_ACONN2             as Connection;
+  expose ZR_RAP_AFLIGHT2           as Flight;
+  expose ZR_RAP_ACARRIER2          as Carrier;
+  expose I_Currency                as Currency;
+  expose /DMO/I_Customer           as Customer;
+  expose /DMO/I_Agency             as Agency;
+}

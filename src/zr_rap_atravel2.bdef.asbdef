@@ -1,0 +1,84 @@
+managed implementation in class zbp_r_rap_atravel_2 unique;
+strict ( 2 );
+with draft;
+extensible;
+
+define behavior for ZR_RAP_ATRAVEL2 alias Travel
+persistent table zrap_atravel2
+extensible
+draft table zrap_atravel2_d
+lock master total etag LastChangedAt
+authorization master ( global, instance )
+etag master LocalLastChangedAt
+{
+  create;
+  update;
+  delete;
+
+  field ( numbering : managed, readonly ) TravelUUID;
+  field ( readonly ) TravelID, OverallStatus, TotalPrice, LocalCreatedAt, LocalCreatedBy, LocalLastChangedAt, LocalLastChangedBy;
+  field ( mandatory ) CustomerID, AgencyID, BeginDate, EndDate, CurrencyCode;
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for zrap_atravel2 corresponding extensible
+    {
+      TravelID           = travel_id;
+      TravelUUID         = travel_uuid;
+      AgencyID           = agency_id;
+      BeginDate          = begin_date;
+      BookingFee         = booking_fee;
+      CurrencyCode       = currency_code;
+      CustomerID         = customer_id;
+      Description        = description;
+      EndDate            = end_date;
+      OverallStatus      = overall_status;
+      TotalPrice         = total_price;
+      LocalCreatedAt     = local_created_at;
+      LocalCreatedBy     = local_created_by;
+      LocalLastChangedBy = local_last_changed_by;
+      LastChangedAt      = last_changed_at;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+
+  association _Booking { create; with draft; }
+}
+
+define behavior for ZR_RAP_ABOOK2 alias Booking
+implementation in class ZBP_R_RAP_ABOOK_2 unique
+persistent table zrap_abook2
+draft table zrap_abook2_d
+lock dependent by _Travel
+authorization dependent by _Travel
+etag master LocalLastChangedAt
+{
+  update;
+  delete;
+
+  field ( numbering : managed, readonly ) BookingUUID;
+  field ( readonly ) TravelUUID, BookingID, BookingDate, LocalLastChangedAt;
+  field ( mandatory ) CustomerID, CarrierID, ConnectionID, FlightDate, CurrencyCode;
+
+  mapping for zrap_abook2
+    {
+      CarrierID          = carrier_id;
+      TravelUUID         = travel_uuid;
+      BookingDate        = booking_date;
+      BookingID          = booking_id;
+      BookingUUID        = booking_uuid;
+      ConnectionID       = connection_id;
+      CurrencyCode       = currency_code;
+      CustomerID         = customer_id;
+      FlightDate         = flight_date;
+      FlightPrice        = flight_price;
+      CreatedBy          = created_by;
+      LastChangedBy      = last_changed_by;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+
+  association _Travel { with draft; }
+}
